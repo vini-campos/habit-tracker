@@ -9,10 +9,12 @@ class SiteController extends Controller
         $name = "vinicius";
         $habits =['Jogar', 'Estudar programação', 'Videogames', 'Dormir'];
 
-        return view('home', [
-            'name' => $name,
-            'habits' => $habits
-        ]);
+        // compact passa a variavel direto para a view somente com o nome
+        return view('home', compact('name', 'habits'));
+    }
+
+    public function dashboard () {
+        return view('dashboard');
     }
 }
 
