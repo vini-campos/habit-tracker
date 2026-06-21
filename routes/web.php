@@ -14,7 +14,8 @@ Route::get('/login', [LoginController::class, 'index'])->name('site.login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('auth.login');
 
 // AUTH
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function ()
+{
     // DASHBOARD
     Route::get('/dashboard', [SiteController::class, 'dashboard'])->name('site.dashboard');
 
@@ -23,5 +24,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/cadastro', [RegisterController::class, 'index'])->name('site.register');
+
 // store e usado como nomenclatura quando vai salvar algo, como o usuario no banco
 Route::post('/cadastro', [RegisterController::class, 'store'])->name('auth.register');

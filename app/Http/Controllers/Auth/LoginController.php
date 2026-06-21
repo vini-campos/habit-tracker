@@ -10,14 +10,17 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('login');
     }
 
-    public function authenticate(LoginRequest $request) {
+    public function authenticate(LoginRequest $request)
+    {
         $credentials = $request->only('email', 'password');
         
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials))
+        {
             $request->session()->regenerate();
 
             return redirect()->intended(route('site.dashboard'));
@@ -28,7 +31,8 @@ class LoginController extends Controller
         ]);
     }
 
-    public function logout(LoginRequest $request): RedirectResponse {
+    public function logout(LoginRequest $request): RedirectResponse
+    {
         Auth::logout();
 
         $request->session()->invalidate();
