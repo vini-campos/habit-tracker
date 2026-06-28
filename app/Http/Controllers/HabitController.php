@@ -25,7 +25,7 @@ class HabitController extends Controller
     {
         $validated = $request->validated();
 
-        // ta normal mesmo com o erro, é o vscode enchendo o saco
+        // erro visual do vscode
         auth()->user()->habits()->create($validated);
 
         return redirect()
@@ -54,6 +54,15 @@ class HabitController extends Controller
      */
     public function destroy(Habit $habit)
     {
-        //
+        if ($habit->user_id != auth()->user()->id)
+        {
+            abort(403, 'Esse hábito pertence a outro usuário'); 
+        }
+
+        $habit->delete();
+
+            return redirect()
+                ->route('site.dashboard')
+                ->with('success', 'Hábito removido');
     }
 }
