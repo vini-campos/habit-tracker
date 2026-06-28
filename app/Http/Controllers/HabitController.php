@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Http\Requests\HabitRequest;
 use App\Models\Habit;
 use Illuminate\Http\Request;
@@ -38,7 +37,7 @@ class HabitController extends Controller
      */
     public function edit(Habit $habit)
     {
-        //
+        return view('habit.edit', compact('habit'));
     }
 
     /**
@@ -46,7 +45,16 @@ class HabitController extends Controller
      */
     public function update(Request $request, Habit $habit)
     {
-        //
+        if ($habit->user_id != auth()->user()->id)
+        {
+            abort(403, 'Esse hábito pertence a outro usuário'); 
+        }
+
+        $habit->update($request->all());
+
+        return redirect()
+            ->route('site.dashboard')
+            ->with('success', 'Hábito atualizado');
     }
 
     /**
