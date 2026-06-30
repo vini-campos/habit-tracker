@@ -23,7 +23,7 @@ class LoginController extends Controller
         {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('site.dashboard'));
+            return redirect()->intended(route('habits.index'));
         }
 
         return back()->withErrors([
@@ -31,7 +31,7 @@ class LoginController extends Controller
         ]);
     }
 
-    public function logout(LoginRequest $request): RedirectResponse
+    public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
 
@@ -39,6 +39,6 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect(route('site.index'));
+        return redirect(route('site.login'));
     }
 }
