@@ -6,4 +6,34 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-habit-orange: #fb6334;
+}
+
+.habit-btn {
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+}
+
+.habit-shadow {
+    border: 2px solid #000;
+    box-shadow: 2px 2px 0px #000;
+}
+
+.habit-shadow-lg {
+    border: 2px solid #000;
+    box-shadow: 5px 5px 0px #000;
+}
+
+.habit-shadow-lg-btn {
+    transition: box-shadow 0.2s ease,
+    transform 0.2s ease;
+    border: 2px solid #000;
+    box-shadow: 3px 3px 0px #000;
+}
+
+.habit-shadow-lg-btn:hover {
+    box-shadow: 2px 2px 0px #000;
+    transform: translate(3px, 3px);
 }
