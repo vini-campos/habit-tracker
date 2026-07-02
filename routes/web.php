@@ -17,14 +17,13 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('auth.logi
 // AUTH
 Route::middleware('auth')->group(function ()
 {
-    // DASHBOARD
-
     // LOGOUT
     Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
     // HABITS
     Route::resource('/dashboard/habits', HabitController::class)->except('show');
     Route::get('/dashboard/habits/config', [HabitController::class, 'settings'])->name('habits.settings');
+    Route::post('/dashboard/habits/{habit}/toggle', [HabitController::class, 'toggle'])->name('habits.toggle');
 });
 
 Route::get('/cadastro', [RegisterController::class, 'index'])->name('site.register');
