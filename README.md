@@ -51,7 +51,7 @@ Certifique-se de ter instalado na sua máquina:
 - Node.js & npm
 - MySQL (ou outro banco compatível com Laravel)
 
-> Se você usa **[Laragon](https://laragon.org/)**, todos esses requisitos já estão disponíveis.
+> Se você usa **[Laragon](https://laragon.org/)**, só precisará do **[Composer](https://getcomposer.org/)** e **[Node.js](https://nodejs.org/pt-br)**.
 
 ---
 
