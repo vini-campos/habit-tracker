@@ -1,43 +1,34 @@
 <x-layout>
-    <main class="max-w-7xl mx-auto py-10 min-h-[calc(100vh-160px)] px-4">
-
+    <main class="max-w-5xl mx-auto py-10 px-4 min-h-[80vh] w-full">
+        {{-- NAVBAR --}}
         <x-navbar />
 
-        @session('success')
-            <div class="flex">
-                <p class="bg-green-100 border-2 border-green-400 text-green-700 p-3 rounded mb-4">
-                    {{ session('success') }}
-                </p>
-            </div>
-        @endsession
-
         <div>
-            <h2 class="text-lg mt-8 mb-2">
-                Configurar Hábitos
-            </h2>
+            <x-tittle>
+                Configurar hábitos
+            </x-tittle>
 
-            <ul class="flex flex-col gap-2">
+            <ul class="flex flex-col gap-2 mt-2">
                 @forelse ($habits as $item)
-                    <li class="habit-shadow-lg p-2 bg-[#FFDAAC]">
-                        <div class="flex gap-2 items-center">
-                            <input type="checkbox" class="w-5 h-5 {{ $item->is_completed ? 'checked' : '' }} disabled">
-
+                    <li class="flex gap-2 items-center justify-between w-full">
+                        <div class="habit-shadow-lg p-2 bg-[#FFDAAC] w-full">
                             <p class="font-bold text-lg">
                                 {{ $item->name }}
                             </p>
-
-                            <a class="bg-white p-1 hover:opacity-50" href="{{ route('habits.edit', $item->id) }}">
-                                <x-icons.edit />
-                            </a>
-
-                            <form action="{{ route('habits.destroy', $item) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white p-1 hover:opacity-50 cursor-pointer">
-                                    <x-icons.trash />
-                                </button>
-                            </form>
                         </div>
+                        {{-- EDIT --}}
+                        <a class="bg-white p-2 habit-shadow-lg-btn" href="{{ route('habits.edit', $item->id) }}">
+                            <x-icons.edit />
+                        </a>
+
+                        {{-- DELETE --}}
+                        <form action="{{ route('habits.destroy', $item) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 habit-shadow-lg-btn text-white p-2 cursor-pointer">
+                                <x-icons.trash />
+                            </button>
+                        </form>
                     </li>
                 @empty
                     <p>

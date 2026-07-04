@@ -1,23 +1,24 @@
 <x-layout>
-    <main class="max-w-5xl mx-auto py-10 min-h-[calc(100vh-160px)] px-4">
+    <main class="max-w-5xl mx-auto py-10 px-4 min-h-[80vh] w-full">
 
         {{-- NAVBAR --}}
         <x-navbar />
 
-        <div>
-            <h2 class="text-lg mt-8 mb-2">
-                {{ date('d-m-Y')  }}
-            </h2>
+        {{-- CONTENT --}}
+        <div class="flex flex-col gap-4 items-start">
+            <x-tittle>
+                {{ \Carbon\Carbon::now()->locale('pt_BR')->translatedFormat('l, d \d\e F') }}
+            </x-tittle>
 
-            <ul class="flex flex-col gap-2">
+            <ul class="flex flex-col gap-2 w-full">
                 @forelse ($habits as $item)
                     <li class="habit-shadow-lg p-2 bg-[#FFDAAC]">
                         <form action="{{ route('habits.toggle', $item->id) }}" method="post" class="flex gap-2 items-center" id="form-{{ $item->id }}">
                             @csrf
-                            <input type="checkbox" class="w-5 h-5" {{ $item->wasCompletedToday() ? 'checked' : '' }}
+                            <input type="checkbox" class="accent-habit-orange w-5 h-5 cursor-pointer" {{ $item->wasCompletedToday() ? 'checked' : '' }}
                                 onchange="document.getElementById('form-{{ $item->id }}').submit()">
                                 
-                            <p class="font-bold text-lg">
+                            <p class="font-bold text-lg {{ $item->wasCompletedToday() ? 'line-through decoration-2 decoration-habit-orange text-black/35' : '' }}">
                                 {{ $item->name }}
                             </p>
                         </form>
@@ -31,6 +32,10 @@
                     </a>
                 @endforelse
             </ul>
+
+            <a href="{{ route('habits.create') }}" class="p-2 border-2 habit-shadow-lg-btn bg-habit-orange habit-btn">
+                Adicionar
+            </a>
         </div>
     </main>
 </x-layout>
