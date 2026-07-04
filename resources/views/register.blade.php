@@ -90,13 +90,13 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="bg-white border-2 p-2">
-                    Cadastrar
+                <button type="submit" class="mt-1 p-3 bg-habit-orange habit-shadow-lg-btn habit-btn text-sm uppercase tracking-widest">
+                    Cadastrar-se
                 </button>
             </form>
             <p class="text-center mt-4">
                 Já tem uma conta?
-                <a href="{{ route('site.login') }}" class="underline hover:opacity-50 transition">
+                <a href="{{ route('login') }}" class="underline hover:opacity-50 transition">
                     Faça login
                 </a>
             </p>
