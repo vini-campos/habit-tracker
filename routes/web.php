@@ -10,9 +10,18 @@ use Illuminate\Support\Facades\Route;
 // name e opcional, serve para deixar uma rota dinamica, nao precisando alterar seu nome original
 Route::get('/', [SiteController::class, 'index'])->name('site.index');
 
-// LOGIN
-Route::get('/login', [LoginController::class, 'index'])->name('site.login');
-Route::post('/login', [LoginController::class, 'authenticate'])->name('auth.login');
+// GUEST
+Route::middleware('guest')->group(function ()
+{
+    // LOGIN
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'authenticate'])->name('auth.login');
+
+    // REGISTER
+    Route::get('/cadastro', [RegisterController::class, 'index'])->name('site.register');
+    // store e usado como nomenclatura quando vai salvar algo, como o usuario no banco
+    Route::post('/cadastro', [RegisterController::class, 'store'])->name('auth.register');
+});
 
 // AUTH
 Route::middleware('auth')->group(function ()
@@ -22,12 +31,7 @@ Route::middleware('auth')->group(function ()
 
     // HABITS
     Route::get('/dashboard/habits/history/{year?}', [HabitController::class, 'history'])->name('habits.history');
-    Route::resource('/dashboard/habits', HabitController::class)->except('show');
     Route::get('/dashboard/habits/config', [HabitController::class, 'settings'])->name('habits.settings');
     Route::post('/dashboard/habits/{habit}/toggle', [HabitController::class, 'toggle'])->name('habits.toggle');
+    Route::resource('/dashboard/habits', HabitController::class)->except('show');
 });
-
-Route::get('/cadastro', [RegisterController::class, 'index'])->name('site.register');
-
-// store e usado como nomenclatura quando vai salvar algo, como o usuario no banco
-Route::post('/cadastro', [RegisterController::class, 'store'])->name('auth.register');
