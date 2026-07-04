@@ -8,10 +8,11 @@
 @endphp
 
 <div class="mb-6">
-    <h2 class="font-bold text-lg">
-        {{ $habit->name }}
-    </h2>
-
+    <div class="bg-habit-orange rounded-t-md">
+        <h2 class="font-bold text-lg text-left text-white pl-3">
+            {{ $habit->name }}
+        </h2>
+    </div>
     {{-- GRID --}}
     <div class="bg-orange-50 p-2 habit-shadow-lg overflow-x-auto">
         <div class="flex gap-1 justify-between w-full">
