@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <title>{{ config('app.name') }}</title>
 </head>
-<body class="bg-[#FFEDD6] font-mono relative">
+<body class="font-mono relative habit-bg min-h-screen flex flex-col justify-between">
     {{-- HEADER --}}
     <x-header />
 

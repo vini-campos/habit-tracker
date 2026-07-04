@@ -1,7 +1,11 @@
 <x-layout>
-    <main class="max-w-5xl mx-auto py-10 min-h-[calc(100vh-160px)] px-4">
+    <main class="max-w-5xl mx-auto py-10 min-h-[calc(100vh-160px)] px-4 w-full">
 
         <x-navbar />
+
+        <x-tittle>
+            Histórico
+        </x-tittle>
 
         {{-- YEAR SELECTION --}}
         <div class="my-4">

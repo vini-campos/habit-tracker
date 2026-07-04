@@ -11,7 +11,7 @@
         </div>
 
         {{-- GITHUB --}}
-        <div>
+        <div class="flex gap-2 items-center">
             @auth
             
                 <form class="inline" action="{{ route('auth.logout') }}" method="post">
@@ -34,6 +34,10 @@
                     </a>
                 </div>
             @endguest
+
+            <a class="habit-btn habit-shadow-lg-btn p-2" href="https://github.com/vini-campos/habit-tracker">
+                <x-icons.github />
+            </a>
         </div>
     </div>
 </header>
