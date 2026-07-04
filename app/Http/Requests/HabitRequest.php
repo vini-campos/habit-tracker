@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Override;
 
 class HabitRequest extends FormRequest
@@ -23,8 +25,20 @@ class HabitRequest extends FormRequest
      */
     public function rules(): array
     {
+        $uniqueRule = Rule::unique('habits')->where('user_id', Auth::id());
+
+        // se for update, ignora o registro
+        if ($this->habit)
+        {
+            $uniqueRule = $uniqueRule->ignore($this->habit->id);                
+        }
+
         return [
-            'name' => 'required|max:255|string',
+            'name' => [
+                'required',
+                'max:255',
+                $uniqueRule,
+            ],
         ];
     }
 
@@ -33,7 +47,7 @@ class HabitRequest extends FormRequest
         return [
             'name.required' => 'O campo é obrigatório',
             'name.max' => 'O nome deve ter até 255 caracteres',
-            'name.string' => 'O nome não deve conter números ou simbolos',
+            'name.unique' => 'O nome não deve ser igual ao de outro hábito',
         ];
     }
 }
