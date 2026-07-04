@@ -81,7 +81,7 @@ class HabitController extends Controller
 
             return redirect()
                 ->route('habits.index')
-                ->with('success', 'Hábito removido');
+                ->with('warning', 'Hábito removido.');
     }
 
     public function settings()
@@ -106,6 +106,7 @@ class HabitController extends Controller
         {
             $log->delete();
             $message = 'Hábito desmarcado.';
+            $alert = 'warning';
         }
         else
         {
@@ -115,17 +116,24 @@ class HabitController extends Controller
                 'completed_at' => $today,
             ]);
 
+            $alert = 'success';
             $message = 'Hábito concluído.';
         }
 
         return redirect()
             ->route('habits.index')
-            ->with('success', $message);
+            ->with($alert, $message);
     }
 
-    public function history(): view
+    public function history(?int $year = null): view
     {
-        $selectedYear = Carbon::now()->year;
+        $selectedYear = $year ?? Carbon::now()->year;
+        $availableYears = range(Carbon::now()->year - 1, Carbon::now()->year);
+
+        if (!in_array($selectedYear, $availableYears))
+        {
+            abort(404, 'Ano inválido');   
+        }
 
         $startDate = Carbon::create($selectedYear, 1, 1);
         $endDate = Carbon::create($selectedYear, 12, 31, 23, 59, 59);
@@ -136,6 +144,6 @@ class HabitController extends Controller
             }])
             ->get();
 
-        return view('habits.history', compact('habits', 'selectedYear'));
+        return view('habits.history', compact('habits', 'selectedYear' ,'availableYears'));
     }
 }
