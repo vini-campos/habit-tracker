@@ -2,18 +2,23 @@
     <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
         {{-- LOGO --}}
         <div class="flex items-center gap-2 font-bold">
-            <a href="{{ route('habits.index') }}" class="habit-btn habit-shadow-lg-btn px-2 py-1 bg-habit-orange">
+            <a href="{{ Auth::check() ? route('habits.index') : route('site.index') }}" class="habit-btn habit-shadow-lg-btn px-2 py-1 bg-habit-orange">
                 HT
             </a>
             <p>
-                Habit Tracker
+                @auth
+                    Olá, {{ Auth::user()->name }}
+                @endauth
+                {{-- Caso nao estiver logado mostra o nome do sistema --}}
+                @guest
+                    Habit Tracker
+                @endGuest
             </p>
         </div>
 
         {{-- GITHUB --}}
         <div class="flex gap-2 items-center">
             @auth
-            
                 <form class="inline" action="{{ route('auth.logout') }}" method="post">
                     @csrf
 
@@ -23,17 +28,17 @@
                 </form>
             @endauth
 
-            @guest
+            @if (!auth()->user())
                 <div class="flex gap-2">
-                    <a href="{{ route('auth.login') }}" class="p-2 habit-shadow-lg-btn habit-btn">
+                    <a href="{{ route('site.register') }}" class="p-2 habit-shadow-lg-btn habit-btn">
                         Cadastrar
                     </a>
 
-                    <a href="{{ route('auth.login') }}" class="p-2 border-2 habit-shadow-lg-btn bg-habit-orange habit-btn">
+                    <a href="{{ route('login') }}" class="p-2 border-2 habit-shadow-lg-btn bg-habit-orange habit-btn">
                         Logar
                     </a>
                 </div>
-            @endguest
+            @endif
 
             <a class="habit-btn habit-shadow-lg-btn p-2" href="https://github.com/vini-campos/habit-tracker">
                 <x-icons.github />
