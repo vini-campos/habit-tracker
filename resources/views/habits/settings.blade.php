@@ -32,10 +32,11 @@
                     </li>
                 @empty
                     <p>
-                        Ainda não há nenhum hábito cadastrado
+                        Ainda não há nenhum hábito cadastrado.
                     </p>
-                    <a href="{{ route('habits.create') }}" class="bg-white p-2 border-2">
-                        Adicione um novo hábito agora
+                    
+                    <a href="{{ route('habits.create') }}" class="p-2 border-2 habit-shadow-lg-btn bg-[#FFDAAC] habit-btn">
+                        Adicionar hábito
                     </a>
                 @endforelse
             </ul>

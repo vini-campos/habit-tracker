@@ -25,17 +25,20 @@
                     </li>
                 @empty
                     <p>
-                        Ainda não há nenhum hábito cadastrado
+                        Cadastre o seu primeiro hábito.
                     </p>
-                    <a href="{{ route('habits.create') }}" class="bg-white p-2 border-2">
-                        Adicione um novo hábito agora
+
+                    <a href="{{ route('habits.create') }}" class="p-2 border-2 habit-shadow-lg-btn bg-[#FFDAAC] habit-btn">
+                        Adicionar hábito
                     </a>
                 @endforelse
             </ul>
 
-            <a href="{{ route('habits.create') }}" class="p-2 border-2 habit-shadow-lg-btn bg-habit-orange habit-btn">
-                Adicionar
-            </a>
+            @if ($habits->isNotEmpty())
+                <a href="{{ route('habits.create') }}" class="p-2 border-2 habit-shadow-lg-btn bg-habit-orange habit-btn">
+                    Adicionar
+                </a>
+            @endif
         </div>
     </main>
 </x-layout>

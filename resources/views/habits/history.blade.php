@@ -18,16 +18,17 @@
         </div>
 
         {{-- HISTORICO --}}
-        <div>
+        <div class="flex flex-col gap-2 w-full">
             @forelse($habits as $habit)
                 <x-contribution :$habit :year="$selectedYear"/>
             @empty
-                <div>
+                <div class="flex flex-col gap-2 w-full">
                     <p class="text-black">
                         Nenhum hábito para exibir o histórico.
                     </p>
-                    <a href="{{ route('habits.create') }}" class="underline">
-                        Crie um novo hábito
+
+                    <a href="{{ route('habits.create') }}" class="p-2 border-2 habit-shadow-lg-btn bg-[#FFDAAC] habit-btn">
+                        Adicionar hábito
                     </a>
                 </div>
             @endforelse
