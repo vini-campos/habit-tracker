@@ -22,9 +22,10 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
             $table
-                ->string('name')
-                ->unique();
+                ->string('name');
             $table->timestamps();
+            
+            $table->unique(['name', 'user_id']);
         });
     }
 
