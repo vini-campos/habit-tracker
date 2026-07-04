@@ -6,13 +6,12 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
-// SITE
-// name e opcional, serve para deixar uma rota dinamica, nao precisando alterar seu nome original
-Route::get('/', [SiteController::class, 'index'])->name('site.index');
-
 // GUEST
 Route::middleware('guest')->group(function ()
 {
+    // SITE{index}
+    Route::get('/', [SiteController::class, 'index'])->name('site.index');
+
     // LOGIN
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'authenticate'])->name('auth.login');
