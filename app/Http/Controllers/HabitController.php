@@ -18,8 +18,8 @@ class HabitController extends Controller
     public function index (): View
     {
         $habits = Auth::user()->habits()
-            ->with('habitLogs')
-            ->get();
+        ->with(['habitLogs' => fn($q) => $q->whereDate('completed_at', today())])
+        ->get();
 
         return view('dashboard', compact('habits'));
     }
@@ -59,11 +59,11 @@ class HabitController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Habit $habit)
+    public function update(HabitRequest $request, Habit $habit)
     {
         $this->authorize('update', $habit);
 
-        $habit->update($request->all());
+        $habit->update($request->validated());
 
         return redirect()
             ->route('habits.index')
@@ -99,7 +99,7 @@ class HabitController extends Controller
 
         $log = HabitLog::query()
             ->where('habit_id', $habit->id)
-            ->where('completed_at', $today)
+            ->whereDate('completed_at', $today)
             ->first();
 
         if($log)
@@ -111,7 +111,7 @@ class HabitController extends Controller
         else
         {
             HabitLog::Create([
-                'user_id' => Auth::user()->id,
+                'user_id' => Auth::id(),
                 'habit_id' => $habit->id,
                 'completed_at' => $today,
             ]);
@@ -128,7 +128,10 @@ class HabitController extends Controller
     public function history(?int $year = null): view
     {
         $selectedYear = $year ?? Carbon::now()->year;
-        $availableYears = range(Carbon::now()->year - 1, Carbon::now()->year);
+
+        $firstLog = Auth::user()->habitsLog()->oldest('completed_at')->first();
+        $firstYear = $firstLog ? Carbon::parse($firstLog->completed_at)->year : Carbon::now()->year;
+        $availableYears = range($firstYear, Carbon::now()->year);
 
         if (!in_array($selectedYear, $availableYears))
         {
