@@ -1,1 +1,2 @@
-import './toast'
+import './toast';
+import './modal-delete';
