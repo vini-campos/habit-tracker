@@ -23,7 +23,7 @@
                         type="text" 
                         name="nome" 
                         placeholder="Seu nome" 
-                        class="bg-white p-2 border-2 @error('nome') border-red-500 @enderror"
+                        class="bg-white p-2.5 text-sm habit-shadow focus:outline-none @error('nome') border-red-500 @enderror"
                     >
 
                     @error('nome')
@@ -42,7 +42,7 @@
                         type="email" 
                         name="email" 
                         placeholder="Email" 
-                        class="bg-white p-2 border-2 @error('email') border-red-500 @enderror"
+                        class="bg-white p-2.5 text-sm habit-shadow focus:outline-none @error('email') border-red-500 @enderror"
                     >
 
                     @error('email')
@@ -61,7 +61,7 @@
                         type="password" 
                         name="password" 
                         placeholder="**********" 
-                        class="bg-white p-2 border-2 @error('password') border-red-500 @enderror"
+                        class="bg-white p-2.5 text-sm habit-shadow focus:outline-none @error('password') border-red-500 @enderror"
                     >
 
                     @error('password')
@@ -80,7 +80,7 @@
                         type="password" 
                         name="password_confirmation" 
                         placeholder="**********" 
-                        class="bg-white p-2 border-2 @error('password') border-red-500 @enderror"
+                        class="bg-white p-2.5 text-sm habit-shadow focus:outline-none @error('password') border-red-500 @enderror"
                     >
 
                     @error('password')
@@ -94,9 +94,9 @@
                     Cadastrar-se
                 </button>
             </form>
-            <p class="text-center mt-4">
+            <p class="text-center text-sm text-gray-500 mt-6">
                 Já tem uma conta?
-                <a href="{{ route('login') }}" class="underline hover:opacity-50 transition">
+                <a href="{{ route('login') }}" class="font-bold text-black underline underline-offset-2 hover:opacity-60 transition">
                     Faça login
                 </a>
             </p>

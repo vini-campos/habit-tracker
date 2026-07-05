@@ -18,11 +18,11 @@
             {{-- CTA Buttons --}}
             <div class="flex flex-wrap gap-4 items-center justify-center mt-2">
                 <a href="{{ route('auth.register') }}"
-                   class="habit-btn habit-shadow-lg-btn font-mono bg-habit-orange text-white px-6 py-3 text-sm">
+                   class="habit-btn habit-shadow-lg-btn font-bold bg-habit-orange text-white px-6 py-3 text-sm">
                     Começar agora
                 </a>
                 <a href="{{ route('auth.login') }}"
-                   class="habit-btn habit-shadow-lg-btn font-mono bg-white text-black px-6 py-3 text-sm">
+                   class="habit-btn habit-shadow-lg-btn font-bold bg-white text-black px-6 py-3 text-sm">
                     Já tenho conta
                 </a>
             </div>
