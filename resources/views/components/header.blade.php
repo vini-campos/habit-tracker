@@ -7,7 +7,7 @@
             </a>
             <p>
                 @auth
-                    Olá, {{ Auth::user()->name }}
+                    Olá, {{ str(Auth::user()->name)->before(' ') }}
                 @endauth
                 {{-- Caso nao estiver logado mostra o nome do sistema --}}
                 @guest
