@@ -149,4 +149,33 @@ class HabitController extends Controller
 
         return view('habits.history', compact('habits', 'selectedYear' ,'availableYears'));
     }
+
+    public function calendar(Request $request)
+    {
+        $year  = $request->integer('year', now()->year);
+        $month = $request->integer('month', now()->month);
+    
+        $date = Carbon::create($year, $month, 1)->locale('pt_BR');
+    
+        $startOfMonth = $date->copy()->startOfMonth();
+        $endOfMonth   = $date->copy()->endOfMonth();
+    
+        // Carrega todos os hábitos com os logs do mês atual
+        $habits = Auth::user()->habits()
+            ->with(['habitLogs' => fn($q) => $q->whereBetween('completed_at', [$startOfMonth, $endOfMonth])])
+            ->get();
+    
+        // Agrupa por dia: ['2025-06-01' => 3, '2025-06-02' => 1, ...]
+        $logsByDay = $habits->flatMap->habitLogs
+            ->groupBy(fn($log) => Carbon::parse($log->completed_at)->toDateString())
+            ->map->count();
+    
+        return view('habits.habitCalendar', [
+            'date'      => $date,
+            'previous'  => $date->copy()->subMonth(),
+            'next'      => $date->copy()->addMonth(),
+            'habits'    => $habits,
+            'logsByDay' => $logsByDay,
+        ]);
+    }
 }
