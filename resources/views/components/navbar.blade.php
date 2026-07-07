@@ -13,7 +13,7 @@
             </a> 
         </li>
         <li>
-            <a href="#" class="font-bold text-lg border-r-2 border-habit-orange pr-2 hover:underline cursor-not-allowed">
+            <a href="{{ route('habits.calendar') }}" class="font-bold text-lg border-r-2 border-habit-orange pr-2 hover:underline">
                 Calendário
             </a> 
         </li>
