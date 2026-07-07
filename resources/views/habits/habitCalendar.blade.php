@@ -101,7 +101,7 @@
                                 </span>
 
                                 @if ($hasHabitsForDay && $completedCount > 0)
-                                    <span class="text-xs font-bold text-habit-orange">{{ $percent }}%</span>
+                                    <span class="text-xs font-bold text-habit-orange pl-1">{{ $percent }}%</span>
                                 @endif
                             </div>
 
