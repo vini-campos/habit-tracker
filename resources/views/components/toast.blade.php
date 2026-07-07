@@ -13,17 +13,22 @@
 @endphp
 
 @if (session()->has('success') || session()->has('error') || session()->has('warning'))
-    <div id="toast" class="absolute top-25 right-20 border-2 p-3 mb-4 flex gap-2 items-center bg-green-100 border-green-400
-        text-green-700 {{ $styles[$type] }}">
+
+    <div
+        id="toast"
+        class="absolute top-4 right-4 sm:top-[100px] sm:right-20 border-2 p-3 mb-4 flex gap-2 items-center {{ $styles[$type] }}"
+    >
 
         {{-- ICON --}}
-        <x-dynamic-component :component="'icons.' . $type" class="mt-4" />
+        <x-dynamic-component :component="'icons.' . $type" class="shrink-0" />
 
         {{-- MESSAGE --}}
         <div>
-            <p>
+            <p class="text-sm">
                 {{ $message }}
             </p>
         </div>
+
     </div>
+
 @endif

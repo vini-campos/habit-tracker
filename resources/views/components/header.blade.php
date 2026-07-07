@@ -1,7 +1,7 @@
 <header class="bg-white border-b-2">
-    <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 p-4">
         {{-- LOGO --}}
-        <div class="flex items-center gap-2 font-bold">
+        <div class="flex items-center gap-2 font-bold sm:max-w-3xl pr-3">
             <a href="{{ Auth::check() ? route('habits.index') : route('site.index') }}" class="habit-btn habit-shadow-lg-btn px-2 py-1 bg-habit-orange">
                 HT
             </a>
@@ -17,7 +17,7 @@
         </div>
 
         {{-- GITHUB --}}
-        <div class="flex gap-2 items-center">
+        <div class="flex flex-wrap justify-center md:justify-end gap-2 w-full md:w-auto">
             @auth
                 <form class="inline" action="{{ route('auth.logout') }}" method="post">
                     @csrf

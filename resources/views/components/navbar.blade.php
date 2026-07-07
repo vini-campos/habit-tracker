@@ -1,5 +1,5 @@
 <nav>
-    <ul class="flex gap-4 items-center ">
+    <ul class="flex flex-wrap gap-4 items-center">
         <li>
             <a href="{{ route('habits.index') }}" class="{{ Route::is('habits.index') ? 'font-bold underline' : '' }}
                 font-bold text-lg border-r-2 border-habit-orange pr-2 hover:underline">
@@ -13,7 +13,8 @@
             </a> 
         </li>
         <li>
-            <a href="{{ route('habits.calendar') }}" class="font-bold text-lg border-r-2 border-habit-orange pr-2 hover:underline">
+            <a href="{{ route('habits.calendar') }}" class="{{ Route::is('habits.calendar') ? 'font-bold underline' : '' }}
+                font-bold text-lg border-r-2 border-habit-orange pr-2 hover:underline">
                 Calendário
             </a> 
         </li>
