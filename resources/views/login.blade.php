@@ -1,8 +1,8 @@
 <x-layout>
-    <main class="py-10">
-        <section class="bg-white max-w-150 mx-auto p-10 pb-6 mt-4 habit-shadow-lg">
+    <main class="py-10 px-4">
+        <section class="bg-white w-full max-w-md mx-auto mt-4 p-6 md:p-10 pb-6 habit-shadow-lg">
 
-            <h1 class="font-black text-3xl mb-1 tracking-tight">
+            <h1 class="font-black text-2xl md:text-3xl mb-1 tracking-tight">
                 Fazer login
             </h1>
 
@@ -56,13 +56,13 @@
 
                 <button
                     type="submit"
-                    class="mt-1 p-3 bg-habit-orange habit-shadow-lg-btn habit-btn text-sm uppercase tracking-widest"
+                    class="mt-1 py-3 px-4 bg-habit-orange habit-shadow-lg-btn habit-btn text-sm md:text-base uppercase tracking-widest"
                 >
                     Entrar
                 </button>
             </form>
 
-            <p class="text-center text-sm text-gray-500 mt-6">
+            <p class="text-center text-sm text-gray-500 mt-6 leading-relaxed">
                 Ainda não tem uma conta?
                 <a href="{{ route('site.register') }}" class="font-bold text-black underline underline-offset-2 hover:opacity-60 transition">
                     Registre-se

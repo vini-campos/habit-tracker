@@ -5,7 +5,7 @@
         <div>
             <x-tittle>Configurar hábitos</x-tittle>
 
-            <ul class="flex flex-col gap-2 mt-2">
+            <ul class="flex flex-col gap-2 mt-3">
                 @forelse ($habits as $item)
                     <li class="flex gap-2 items-center justify-between w-full">
                         <div class="habit-shadow-lg p-2 bg-[#FFDAAC] w-full">
