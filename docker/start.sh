@@ -1,13 +1,16 @@
 #!/bin/sh
 
-echo "==> Limpando caches..."
-php artisan config:clear 2>/dev/null || true
-php artisan cache:clear 2>/dev/null || true
+echo "==> Limpando caches do build..."
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+php artisan route:clear
+php artisan event:clear
 
 echo "==> Rodando migrations..."
 php artisan migrate --force
 
-echo "==> Cacheando..."
+echo "==> Cacheando com env vars do Render..."
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
