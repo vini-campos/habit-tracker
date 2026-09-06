@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "==> Criando .env a partir das env vars do sistema..."
-printenv > /var/www/html/.env
+printenv | grep -E "^(APP_|DB_|SESSION_|CACHE_|QUEUE_|LOG_|MAIL_|BROADCAST_|FILESYSTEM_|BCRYPT_|VITE_)" > /var/www/html/.env
 
 echo "==> Limpando caches..."
 php artisan config:clear
