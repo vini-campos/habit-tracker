@@ -41,6 +41,9 @@ RUN npm ci && npm run build
 RUN chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
+# Remove .env local para forçar leitura das env vars do Render
+RUN rm -f /var/www/html/.env
+
 # Configuração do Nginx
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 
