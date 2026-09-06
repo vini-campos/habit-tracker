@@ -34,6 +34,12 @@ COPY . .
 # Dependências PHP (sem dev)
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
+# Remove caches gerados durante o build
+RUN php artisan config:clear \
+    && php artisan cache:clear \
+    && php artisan view:clear \
+    && php artisan route:clear
+
 # Dependências JS e build dos assets
 RUN npm ci && npm run build
 
