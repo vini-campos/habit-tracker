@@ -34,18 +34,17 @@ COPY . .
 # Dependências PHP (sem dev)
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Remove caches gerados durante o build
-RUN php artisan config:clear \
-    && php artisan cache:clear \
-    && php artisan view:clear \
-    && php artisan route:clear
-
 # Dependências JS e build dos assets
 RUN npm ci && npm run build
 
+# Remove caches gerados durante o build
+RUN php artisan config:clear || true \
+    && php artisan view:clear || true \
+    && php artisan route:clear || true
+
 # Permissões
 RUN chown -R www-data:www-data storage bootstrap/cache \
-    && chmod -R 775 storage bootstrap/cache
+    && chmod -R 777 storage bootstrap/cache
 
 # Remove .env local para forçar leitura das env vars do Render
 RUN rm -f /var/www/html/.env
