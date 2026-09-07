@@ -17,6 +17,11 @@ export default defineConfig({
         tailwindcss(),
     ],
     server: {
+        host: 'habit-tracker.test',
+        port: 5173,
+        hmr: {
+            host: 'habit-tracker.test',
+        },
         watch: {
             ignored: ['**/storage/framework/views/**'],
         },
